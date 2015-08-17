@@ -11,7 +11,7 @@ Thermostat.prototype.up = function() {
 };
 
 Thermostat.prototype.down = function() {
-  targetTemperature = targetTemperature - increment;
+  if (targetTemperature > 10) {
+    targetTemperature = targetTemperature - increment;
+  };
 };
-
-
