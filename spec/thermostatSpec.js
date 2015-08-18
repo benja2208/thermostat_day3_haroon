@@ -45,6 +45,13 @@ describe('Thermostat', function() {
       expect(thermostat.powerSave()).toBe(true);
     });
 
+    it('has a maxmimum temperature of 25 when "ON"', function () {
+      thermostat.powerSaveOn();
+      targetTemperature = 25;
+      thermostat.up();
+      expect(thermostat.temperature()).toEqual(25); //ask about raise errors
+    });
+
   });
 
 });
