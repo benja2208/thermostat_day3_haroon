@@ -10,7 +10,7 @@ describe('Thermostat', function() {
 
   describe('temperature', function() {
     it('starts with 20', function() {
-      expect(thermostat.temperature()).toEqual(targetTemperature);
+      expect(thermostat.temperature()).toEqual(defaultTemperature);
     });
 
     it('can be increased by 1 with up button', function() {
@@ -63,8 +63,34 @@ describe('Thermostat', function() {
 
   describe('reset', function () {
     it('changes the temperature to 20 degrees', function () {
-
+      targetTemperature = 15;
+      thermostat.reset();
+      expect(thermostat.temperature()).toEqual(20);
     });
   });
 
+  describe('color display', function() {
+    it('shows green if temperature is < 18', function () {
+      targetTemperature = 17
+      expect(thermostat.displayColour()).toEqual('Green');
+    });
+
+    it('shows yellow if temperature is >17 and < 25', function () {
+      targetTemperature = 20
+      expect(thermostat.displayColour()).toEqual('Yellow');
+    });
+
+    it('shows red if temperature is > 24', function () {
+      targetTemperature = 25
+      expect(thermostat.displayColour()).toEqual('Red');
+    });
+
+  });
 });
+
+
+
+
+
+
+
