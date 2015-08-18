@@ -5,6 +5,7 @@ describe('Thermostat', function() {
   beforeEach(function () {
     thermostat = new Thermostat();
     targetTemperature = 20;
+    powerSave = true;
   });
 
   describe('temperature', function() {
@@ -27,6 +28,23 @@ describe('Thermostat', function() {
       thermostat.down();
       expect(thermostat.temperature()).toEqual(10);
     });
+  });
+
+  describe('powerSave', function() {
+    it('defaults to on', function() {
+      expect(thermostat.powerSave()).toBe(true);
+    });
+
+    it('can be turned off', function() {
+      thermostat.powerSaveOff();
+      expect(thermostat.powerSave()).toBe(false);
+    });
+
+    it('can be turned on', function() {
+      thermostat.powerSaveOn();
+      expect(thermostat.powerSave()).toBe(true);
+    });
 
   });
+
 });
