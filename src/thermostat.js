@@ -1,6 +1,7 @@
 var Thermostat = function() {};
 var targetTemperature = 20;
-var maxTemp = 25
+var maxTempOn = 25
+var maxTempOff = 32
 var minTemp = 10
 var powerSave = true;
 var increment = 1;
@@ -10,8 +11,10 @@ Thermostat.prototype.temperature = function() {
 };
 
 Thermostat.prototype.up = function() {
-  if (powerSave === true && targetTemperature === maxTemp) {
-    targetTemperature = maxTemp
+  if (powerSave === true && targetTemperature === maxTempOn) {
+    targetTemperature = maxTempOn
+  } else if (powerSave === false && targetTemperature === maxTempOff) {
+    targetTemperature = maxTempOff
   } else {
     targetTemperature++;
   }

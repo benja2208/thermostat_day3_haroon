@@ -31,16 +31,16 @@ describe('Thermostat', function() {
   });
 
   describe('powerSave', function() {
-    it('defaults to on', function() {
+    it('defaults to "ON"', function() {
       expect(thermostat.powerSave()).toBe(true);
     });
 
-    it('can be turned off', function() {
+    it('can be turned "OFF"', function() {
       thermostat.powerSaveOff();
       expect(thermostat.powerSave()).toBe(false);
     });
 
-    it('can be turned on', function() {
+    it('can be turned "ON"', function() {
       thermostat.powerSaveOn();
       expect(thermostat.powerSave()).toBe(true);
     });
@@ -50,6 +50,13 @@ describe('Thermostat', function() {
       targetTemperature = 25;
       thermostat.up();
       expect(thermostat.temperature()).toEqual(25); //ask about raise errors
+    });
+
+    it('has a maxmimum temperature of 32 when "OFF"', function () {
+      thermostat.powerSaveOff();
+      targetTemperature = 32;
+      thermostat.up();
+      expect(thermostat.temperature()).toEqual(32); //ask about raise errors
     });
 
   });
