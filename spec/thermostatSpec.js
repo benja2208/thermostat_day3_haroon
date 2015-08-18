@@ -6,6 +6,7 @@ describe('Thermostat', function() {
     thermostat = new Thermostat();
     targetTemperature = 20;
     powerSave = true;
+    defaultTemperature = 20;
   });
 
   describe('temperature', function() {
@@ -24,7 +25,7 @@ describe('Thermostat', function() {
     });
 
     it('cannot go below 10 degrees', function () {
-      targetTemperature = 10;
+      thermostat.targetTemperature = 10;
       thermostat.down();
       expect(thermostat.temperature()).toEqual(10);
     });
@@ -32,29 +33,29 @@ describe('Thermostat', function() {
 
   describe('powerSave', function() {
     it('defaults to "ON"', function() {
-      expect(thermostat.powerSave()).toBe(true);
+      expect(thermostat.powerSave).toBe(true);
     });
 
     it('can be turned "OFF"', function() {
       thermostat.powerSaveOff();
-      expect(thermostat.powerSave()).toBe(false);
+      expect(thermostat.powerSave).toBe(false);
     });
 
     it('can be turned "ON"', function() {
       thermostat.powerSaveOn();
-      expect(thermostat.powerSave()).toBe(true);
+      expect(thermostat.powerSave).toBe(true);
     });
 
     it('has a maxmimum temperature of 25 when "ON"', function () {
       thermostat.powerSaveOn();
-      targetTemperature = 25;
+      thermostat.targetTemperature = 25;
       thermostat.up();
       expect(thermostat.temperature()).toEqual(25); //ask about raise errors
     });
 
     it('has a maxmimum temperature of 32 when "OFF"', function () {
       thermostat.powerSaveOff();
-      targetTemperature = 32;
+      thermostat.targetTemperature = 32;
       thermostat.up();
       expect(thermostat.temperature()).toEqual(32); //ask about raise errors
     });
@@ -63,7 +64,7 @@ describe('Thermostat', function() {
 
   describe('reset', function () {
     it('changes the temperature to 20 degrees', function () {
-      targetTemperature = 15;
+      thermostat.targetTemperature = 15;
       thermostat.reset();
       expect(thermostat.temperature()).toEqual(20);
     });
@@ -71,17 +72,17 @@ describe('Thermostat', function() {
 
   describe('color display', function() {
     it('shows green if temperature is < 18', function () {
-      targetTemperature = 17
+      thermostat.targetTemperature = 17
       expect(thermostat.displayColour()).toEqual('Green');
     });
 
     it('shows yellow if temperature is >17 and < 25', function () {
-      targetTemperature = 20
+      thermostat.targetTemperature = 20
       expect(thermostat.displayColour()).toEqual('Yellow');
     });
 
     it('shows red if temperature is > 24', function () {
-      targetTemperature = 25
+      thermostat.targetTemperature = 25
       expect(thermostat.displayColour()).toEqual('Red');
     });
 

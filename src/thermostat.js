@@ -1,53 +1,56 @@
-var Thermostat = function() {};
-var targetTemperature = 20;
-var maxTempOn = 25
-var maxTempOff = 32
-var minTemp = 10
-var powerSave = true;
-var increment = 1;
-var defaultTemperature = 20;
+var Thermostat = function() {
+  
+  this.targetTemperature = 20;
+  this.maxTempOn = 25;
+  this.maxTempOff = 32;
+  this.minTemp = 10;
+  this.powerSave = true;
+  this.increment = 1;
+  this.defaultTemperature = 20;
+
+};
 
 
 Thermostat.prototype.temperature = function() {
-  return targetTemperature;
+  return this.targetTemperature;
 };
 
 Thermostat.prototype.up = function() {
-  if (powerSave === true && targetTemperature === maxTempOn) {
-    targetTemperature = maxTempOn
-  } else if (powerSave === false && targetTemperature === maxTempOff) {
-    targetTemperature = maxTempOff
+  if (this.powerSave === true && this.targetTemperature === this.maxTempOn) {
+    this.targetTemperature = this.maxTempOn
+  } else if (this.powerSave === false && this.targetTemperature === this.maxTempOff) {
+    this.targetTemperature = this.maxTempOff
   } else {
-    targetTemperature++;
+    this.targetTemperature++;
   }
 };
 
 Thermostat.prototype.down = function() {
-  if (targetTemperature > minTemp) {
-    targetTemperature--;
+  if (this.targetTemperature > this.minTemp) {
+    this.targetTemperature--;
   };
 };
 
 Thermostat.prototype.powerSave = function() {
-  return powerSave;
+  return this.powerSave;
 };
 
 Thermostat.prototype.powerSaveOff = function() {
-  powerSave = false;
+  this.powerSave = false;
 };
 
 Thermostat.prototype.powerSaveOn = function() {
-  powerSave = true;
+  this.powerSave = true;
 };
 
 Thermostat.prototype.reset = function() {
-  targetTemperature = defaultTemperature;
+  this.targetTemperature = this.defaultTemperature;
 };
 
 Thermostat.prototype.displayColour = function() {
-  if (targetTemperature < 18) {
+  if (this.targetTemperature < 18) {
     return 'Green'
-  } else if (targetTemperature > 17 && targetTemperature < 25) {
+  } else if (this.targetTemperature > 17 && this.targetTemperature < 25) {
     return 'Yellow';
   } else {
     return 'Red';
