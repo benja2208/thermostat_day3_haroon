@@ -61,4 +61,10 @@ describe('Thermostat', function() {
 
   });
 
+  describe('reset', function () {
+    it('changes the temperature to 20 degrees', function () {
+
+    });
+  });
+
 });
