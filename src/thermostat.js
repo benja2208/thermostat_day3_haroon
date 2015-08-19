@@ -58,13 +58,3 @@ Thermostat.prototype.displayColour = function() {
 };
 
 
-
-// function Thermostat2() {
-//   var targetTemperature = 20;
-//   var powerSave = true;
-//   return targetTemperature;
-// }
-//
-// Thermostat2.prototype.temperature = function() {
-//   return this.targetTemperature;
-// };
